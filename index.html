@@ -420,84 +420,37 @@ body.light-mode .movie-title { background: #007700; color: #fff; }
   </div>
 </header>
 
-<!-- ===================== SINGLE ROTATING ADSENSE SLOT ===================== -->
-<div id="ad-container" style="text-align:center; margin:20px 0;">
-  <ins id="adsense-slot"
-       class="adsbygoogle"
-       style="display:block; max-width:100%;"
-       data-ad-client="ca-pub-2269884583846743"
-       data-ad-slot="2906167922"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-</div>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743"
-        crossorigin="anonymous"></script>
-
-<script>
-  const adSlots = [
-    "2906167922",
-    "2359999321",
-    "5369359940",
-    "4256856469"
-  ];
-
-  let adIndex = 0;
-  const adIns = document.getElementById("adsense-slot");
-
-  function rotateAd() {
-    adIns.style.opacity = "0";
-
-    setTimeout(() => {
-      adIns.setAttribute("data-ad-slot", adSlots[adIndex]);
-      adIns.innerHTML = "";
-      (adsbygoogle = window.adsbygoogle || []).push({});
-
-      adIns.style.transition = "opacity 1s";
-      adIns.style.opacity = "1";
-
-      adIndex = (adIndex + 1) % adSlots.length;
-    }, 500);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    rotateAd();
-    setInterval(rotateAd, 180000); // 3 minutes (safer)
-  });
-</script>
-
 
 <!-- ===================== VIDEO ===================== -->
 <div class="video-wrap">
 
-<!--AdSense base script (load once per page)-->  
-<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743"></script>
+<!-- AdSense base script (load once per page) -->  
+<script async crossorigin="anonymous"
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743">
+</script>
 
 <div class="video-container">
 
   <!-- VIDEO IFRAME -->
-  <iframe id="videoFrame" scrolling="no" allow="autoplay" src="https://video.wixstatic.com/video/2b73f7_5a405e0266124c64a2bf2061099c92ce/480p/mp4/file.mp4"></iframe>
+  <iframe id="videoFrame" scrolling="no" allow="autoplay"
+    src="https://video.wixstatic.com/video/2b73f7_5a405e0266124c64a2bf2061099c92ce/480p/mp4/file.mp4">
+  </iframe>
 
   <!-- TOP IN-VIDEO AD (768x90) -->
   <div class="ad-top-overlay" id="adTopOverlay">
     <div class="ad-label">AD</div>
-    <ins class="adsbygoogle" style="display:inline-block;width:768px;height:90px"
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:768px;height:90px"
          data-ad-client="ca-pub-2269884583846743"
          data-ad-slot="5742141919"></ins>
-  </div>
-
-  <!-- BOTTOM AD OVERLAY (450x100) -->
-  <div class="ad-overlay" id="adOverlay">
-    <div class="ad-label">AD</div>
-    <ins class="adsbygoogle" data-ad-client="ca-pub-2269884583846743" data-ad-slot="2489590328"></ins>
   </div>
 
 </div>
 
 <style>
 .video-container { 
-  width: 100%; 
-  max-width: 1120px; 
+  width:100%; 
+  max-width:1120px; 
   margin:50px auto; 
   border-radius:12px; 
   overflow:hidden; 
@@ -505,7 +458,7 @@ body.light-mode .movie-title { background: #007700; color: #fff; }
   background:#000; 
 }
 
-/* Video iframe fills container */
+/* Video iframe */
 iframe { 
   width:100%; 
   height:600px; 
@@ -522,7 +475,6 @@ iframe {
   transform:translateX(-50%); 
   width:100%; 
   max-width:768px; 
-  height:auto; 
   background:rgba(0,0,0,0.4); 
   padding:5px; 
   border-radius:10px; 
@@ -538,31 +490,7 @@ iframe {
   height:60px !important; 
 }
 
-/* BOTTOM AD */
-.ad-overlay { 
-  position:absolute; 
-  bottom:10px; 
-  left:50%; 
-  transform:translateX(-50%); 
-  width:100%; 
-  max-width:450px; 
-  height:auto; 
-  background:rgba(0,0,0,0.6); 
-  padding:5px; 
-  border-radius:10px; 
-  z-index:20; 
-  text-align:center; 
-}
-
-.ad-overlay ins.adsbygoogle { 
-  display:block !important; 
-  margin:0 auto; 
-  width:100% !important; 
-  max-width:450px !important; 
-  height:100px !important; 
-}
-
-/* Labels */
+/* AD Label */
 .ad-label { 
   position:absolute; 
   top:-18px; 
@@ -577,31 +505,34 @@ iframe {
   letter-spacing:1px; 
 }
 
-/* Responsive */
-@media screen and (max-width:480px){ 
+/* Mobile */
+@media (max-width:480px){ 
   iframe{height:300px;} 
-  .ad-overlay ins.adsbygoogle{height:80px !important;} 
-  .ad-top-overlay ins.adsbygoogle{height:50px !important;} 
 }
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const videoFrame = document.getElementById("videoFrame");
-  const adOverlay = document.getElementById("adOverlay");
-  const adTopOverlay = document.getElementById("adTopOverlay");
 
-  // Show ads immediately
-  adOverlay.style.display = "block";
-  adTopOverlay.style.display = "block";
-
-  // Autoplay video (reload triggers autoplay in some browsers)
+  // Force autoplay reload
   videoFrame.src = videoFrame.src;
 
-  // Push both ads
-  (adsbygoogle = window.adsbygoogle || []).push({});
+  // Push top ad only
   (adsbygoogle = window.adsbygoogle || []).push({});
 });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2269884583846743"
+     crossorigin="anonymous"></script>
+<!-- 200 by 200 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2269884583846743"
+     data-ad-slot="1267838847"
+     data-ad-format="auto"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
     </div>
