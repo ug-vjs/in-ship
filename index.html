@@ -435,7 +435,7 @@ body.light-mode .movie-title { background: #007700; color: #fff; }
 <!-- ===================== VIDEO ===================== -->
 <div class="video-wrap">
 
-  <div id="video-container" style="position:relative; width:100%; height:500px; margin:20px 0; background:#000;">
+  <div id="video-container" style="position:relative; width:100%; height:400px; margin:20px 0; background:#000;">
 
     <!-- Video Player -->
     <div class="video-wrapper" style="position:relative; width:100%; height:100%;">
@@ -489,138 +489,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   });
 
-  // ===== FAST AUTOPLAY & 5-MINUTE STOP =====
-  video.muted = true;
-  video.play().catch(()=>{});
-
-  setTimeout(() => {
-  // Pause video and hide it behind black
-  video.pause();
-  video.style.display = "none"; // hide video
-  continueBtn.style.display = "flex"; // show ▶ Continue VIDEO
-}, 5 * 60 * 1000); // 5 minutes
-
-// ===== CONTINUE BUTTON CLICK =====
-continueBtn.addEventListener("click", function () {
-    window.open("https://www.marketing2advertising.com/p/the-internship-vj-junior.html", "_blank"); // open in new tab
-});
-
-  // ===== ORIGINAL AD OVERLAY & SCHEDULE =====
-  let skipClicked = false;
-
-  const ads = [
-    { client:"ca-pub-2269884583846743", slot:"2359999321", width:300, height:250 },
-    { client:"ca-pub-2269884583846743", slot:"4256856469", width:250, height:250 },
-    { client:"ca-pub-2269884583846743", slot:"2038317814", width:300, height:600 },
-    { client:"ca-pub-2269884583846743", slot:"8811425590", width:320, height:100 },
-    { client:"ca-pub-2269884583846743", slot:"5610977415", width:336, height:280 }
-  ];
-  let currentAdIndex = 0;
-
-  function showAdOverlay(customSeconds = 8) {
-    const overlay = document.getElementById("ad-overlay");
-    const countdownEl = document.getElementById("countdown");
-    const closeBtn = document.getElementById("close-ad");
-    const adWrapper = document.getElementById("ad-wrapper");
-
-    overlay.style.display = "flex";
-    closeBtn.style.display = "none";
-    adWrapper.innerHTML = "";
-
-    const ad = ads[currentAdIndex];
-    const ins = document.createElement("ins");
-    ins.className = "adsbygoogle";
-    ins.style.display = "inline-block";
-    ins.style.width = ad.width + "px";
-    ins.style.height = ad.height + "px";
-    ins.setAttribute("data-ad-client", ad.client);
-    ins.setAttribute("data-ad-slot", ad.slot);
-
-    adWrapper.appendChild(ins);
-    (adsbygoogle = window.adsbygoogle || []).push({});
-
-    currentAdIndex = (currentAdIndex + 1) % ads.length;
-
-    let timeLeft = customSeconds;
-    countdownEl.textContent = "Skip in: " + timeLeft;
-    const timer = setInterval(function() {
-      timeLeft--;
-      countdownEl.textContent = "Skip in: " + timeLeft;
-      if (timeLeft === 0) {
-        closeBtn.style.display = "inline-block";
-        closeBtn.textContent = "X";
-        clearInterval(timer);
-      }
-    }, 1000);
-
-    closeBtn.onclick = function() {
-      overlay.style.display = "none";
-      video.style.display = "block"; // show video again
-      video.play();
-    };
-  }
-
-  function runInitialTwoAds() {
-    setTimeout(() => {
-      showAdOverlay(7);
-      setTimeout(() => {
-        const closeBtn = document.getElementById("close-ad");
-        closeBtn.style.display = "inline-block";
-        closeBtn.textContent = "Skip";
-      }, 7000);
-
-      const closeBtn = document.getElementById("close-ad");
-      closeBtn.onclick = function() {
-        skipClicked = true;
-        showAdOverlay(8);
-        closeBtn.style.display = "none";
-      };
-
-      setTimeout(() => {
-        if (!skipClicked) {
-          showAdOverlay(8);
-        }
-      }, 20000);
-    }, 120000);
-  }
-
-  runInitialTwoAds();
-
-  setTimeout(() => {
-    setTimeout(showAdOverlay, 300000);
-    setTimeout(showAdOverlay, 600000);
-    setTimeout(showAdOverlay, 1200000);
-    setTimeout(showAdOverlay, 1800000);
-    setInterval(showAdOverlay, 2100000);
-  }, 20000);
-
-});
 </script>
     </div>
 
 <!-- ===================== CONTENT ===================== -->
 <div class="content">
-
-<p>
-<div style="text-align: center;"><a class="button" href="https://www.marketing2advertising.com/contact-us.html" style="background-color: #007bff; border-radius: 5px; color: white; display: inline-block; font-family: Arial, sans-serif; margin: 20px 0px; padding: 15px 25px; text-decoration-line: none;" target="_blank">💼 For Business or Inquiries — WhatsApp Us</a></div>
-</p>
-
-<!-- IN ARTICLE AD (HIGH RPM) -->
-<div class="in-article-ad">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2269884583846743"
-     data-ad-slot="5610977415"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
-
-<p>
-<h1 style="font-family: Arial, sans-serif; text-align: center;">🚀 <span style="color: #04ff00;">Get Paid by completing microtasks </span>💸</h1><div><div style="text-align: center;"><a class="button" href="https://jumptask.marketing2advertising.com/" style="background-color: #007bff; border-radius: 5px; color: white; display: inline-block; font-family: Arial, sans-serif; font-size: 28px; margin: 20px 0px; padding: 15px 25px; text-decoration-line: none;" target="_blank">$209,82 USD Money received  👉 Visit site here🦾</a></div></div>
-</p>
-
-</div>
 
 <!-- ===================== SEARCH BOX ===================== -->
 <div class="search-bar-wrapper">
@@ -697,16 +570,6 @@ continueBtn.addEventListener("click", function () {
 </style>
 
 
-<!-- ===================== DARK/LIGHT MODE TOGGLE ===================== -->
-<button id="modeToggle">LIGHT Mode</button>
-
-<!-- ===================== JAVASCRIPT ===================== -->
-<script>
-// DARK/LIGHT MODE
-const toggleBtn = document.getElementById('modeToggle');
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-});
 
 // BLOGGER SEARCH
 const BLOG_URL = "https://www.marketing2advertising.com/";
